@@ -1,0 +1,6 @@
+- PWA で作る
+- 毎日特定の時刻に Push 通知
+- iOS の画像の API にアクセスしてその日撮った画像があれば表示、選択できるようにする
+- emoji（teams の画像のプレビュー付き）を選べるように
+- github api をつかって blog-contents の内容を更新
+- ishikawayuki-v1 にある画像を blog-contens に移動
