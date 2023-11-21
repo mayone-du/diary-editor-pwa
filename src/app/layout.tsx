@@ -1,5 +1,4 @@
-import "@mantine/core/styles.css";
-
+import { CustomMantineProvider } from "@/lib/mantine/provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { PropsWithChildren } from "react";
@@ -14,7 +13,9 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: PropsWithChildren) => {
   return (
     <html lang="ja">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <CustomMantineProvider>{children}</CustomMantineProvider>
+      </body>
     </html>
   );
 };
