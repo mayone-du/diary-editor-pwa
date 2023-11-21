@@ -1,4 +1,4 @@
-import { Box, Container } from "@mantine/core";
+import { Container } from "@mantine/core";
 import { PropsWithChildren } from "react";
 
 const Layout = ({ children }: PropsWithChildren) => {

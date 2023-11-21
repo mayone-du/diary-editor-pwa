@@ -16,15 +16,24 @@ type IPInfo = {
 };
 
 const getIP = async () => {
+  // NOTE: Rate Limitにかかるとエラーになるため一旦コメントアウト
+  // TODO: リリース時には必須にする。ipinfoにサインアップするか、Next.jsの機能で取得
+  // {
+  //   "status": 429,
+  //   "error": {
+  //     "title": "Rate limit exceeded",
+  //     "message": "You've hit the daily limit for the unauthenticated API.  Create an API access token by signing up to get 50k req/month."
+  //   }
+  // }
+
   const res = await fetch("https://ipinfo.io/?callback");
   const data = await res.json();
   return data as IPInfo;
 };
 
 export const middleware = async (_request: NextRequest) => {
-  const { ip } = await getIP();
-
-  if (!IP_WHITELIST.includes(ip)) {
-    return NextResponse.redirect("https://google.com");
-  }
+  // const { ip } = await getIP();
+  // if (!IP_WHITELIST.includes(ip)) {
+  //   return NextResponse.redirect("https://google.com");
+  // }
 };
