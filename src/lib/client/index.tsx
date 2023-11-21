@@ -1,3 +1,5 @@
 import { Octokit } from "octokit";
 
-export const octokit = new Octokit({ auth: `TODO: personal access token` });
+const PERSONAL_ACCESS_TOKEN = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
+
+export const octokit = new Octokit({ auth: PERSONAL_ACCESS_TOKEN });
