@@ -5,15 +5,21 @@ import Picker from "@emoji-mart/react";
 import { ActionIcon, Box, Center, Modal, Skeleton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconArrowsExchange } from "@tabler/icons-react";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 const PREVIEW_SIZE = 150;
 
-export const EmojiPicker = () => {
-  const [emoji, setEmoji] = useState({
-    native: "",
-    url: "",
-  });
+type Emoji = {
+  native: string;
+  url: string;
+};
+
+type Props = {
+  emoji: Emoji;
+  setEmoji: Dispatch<SetStateAction<Emoji>>;
+};
+
+export const EmojiPicker = ({ emoji, setEmoji }: Props) => {
   const [opened, { open, close }] = useDisclosure(false);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -61,7 +67,7 @@ export const EmojiPicker = () => {
           style={{
             position: "absolute",
             top: 0,
-            right: -PREVIEW_SIZE / 3,
+            right: PREVIEW_SIZE / 3,
             zIndex: 1,
           }}
           radius={"xl"}
