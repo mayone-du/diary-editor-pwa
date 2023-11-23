@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const IP_WHITELIST = ["119.175.138.63"];
+const IP_WHITELIST = ["xxx"];
 
 type IPInfo = {
   ip: string;
@@ -29,6 +29,6 @@ export const middleware = async (request: NextRequest) => {
   }
   const { ip } = await getIP();
   if (!IP_WHITELIST.includes(ip)) {
-    return NextResponse.redirect("/error");
+    return NextResponse.redirect("https://www.google.com");
   }
 };
