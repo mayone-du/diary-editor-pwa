@@ -28,7 +28,11 @@ export const middleware = async (request: NextRequest) => {
     return NextResponse.next();
   }
   const { ip } = await getIP();
+  console.log(ip);
+  console.log("request.ip: ", request.ip);
+  console.log("x-real-ip: ", request.headers.get("x-real-ip"));
   if (!IP_WHITELIST.includes(ip)) {
-    return NextResponse.redirect("https://www.google.com");
+    // return NextResponse.redirect("https://www.google.com");
+    return null;
   }
 };
