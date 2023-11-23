@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const IP_WHITELIST = ["xxx"];
+const IP_WHITELIST = ["119.175.138.63"];
 
 type IPInfo = {
   ip: string;
@@ -24,15 +24,16 @@ const getIP = async () => {
 };
 
 export const middleware = async (request: NextRequest) => {
-  if (request.nextUrl.pathname === "/error") {
+  if (process.env.NODE_ENV === "development") {
     return NextResponse.next();
   }
-  const { ip } = await getIP();
-  console.log(ip);
-  console.log("request.ip: ", request.ip);
-  console.log("x-real-ip: ", request.headers.get("x-real-ip"));
-  if (!IP_WHITELIST.includes(ip)) {
-    // return NextResponse.redirect("https://www.google.com");
-    return null;
+
+  const ip = request.ip ?? request.headers.get("x-real-ip");
+
+  if (!ip || !IP_WHITELIST.includes(ip)) {
+    return Response.json(
+      { success: false, message: "authentication failed" },
+      { status: 401 }
+    );
   }
 };
