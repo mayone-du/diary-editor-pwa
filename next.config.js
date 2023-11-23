@@ -3,6 +3,10 @@ const withPWA = require("@ducanh2912/next-pwa").default({
 });
 
 /** @type {import('next').NextConfig} */
-const nextConfig = withPWA({});
+const nextConfig = withPWA({
+  experimental: {
+    serverComponentsExternalPackages: ["puppeteer"],
+  },
+});
 
 module.exports = nextConfig;
