@@ -1,6 +1,13 @@
 {
-  "theme_color": "#FFFFFF",
-  "background_color": "#FFFFFF",
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "Diary Editor",
+  "short_name": "Diary Edit",
+  "start_url": "/editor",
+  "background_color": "#fff",
+  "orientation": "any",
+  "display": "standalone",
+  "dir": "auto",
+  "lang": "ja",
   "icons": [
     {
       "purpose": "maskable",
@@ -14,13 +21,5 @@
       "src": "icon512_rounded.png",
       "type": "image/png"
     }
-  ],
-  "orientation": "any",
-  "display": "standalone",
-  "dir": "auto",
-  "lang": "ja",
-  "name": "Diary Editor",
-  "short_name": "Diary Edit",
-  "start_url": "/",
-  "scope": "/"
+  ]
 }
