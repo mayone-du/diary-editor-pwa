@@ -31,9 +31,12 @@ const getIP = async () => {
   return data as IPInfo;
 };
 
-export const middleware = async (_request: NextRequest) => {
+export const middleware = async (request: NextRequest) => {
+  if (request.nextUrl.pathname === "/error") {
+    return NextResponse.next();
+  }
   // const { ip } = await getIP();
   // if (!IP_WHITELIST.includes(ip)) {
-  //   return NextResponse.redirect("https://google.com");
+  //   return NextResponse.redirect("/error");
   // }
 };
