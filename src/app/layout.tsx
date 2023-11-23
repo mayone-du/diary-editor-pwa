@@ -8,6 +8,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Diary Editor",
   description: "Diary Editor App",
+  manifest: "/manifest.json",
+  robots: {
+    index: false,
+  },
 };
 
 const RootLayout = ({ children }: PropsWithChildren) => {
