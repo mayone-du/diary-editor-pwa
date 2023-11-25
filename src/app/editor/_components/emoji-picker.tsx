@@ -6,6 +6,7 @@ import { ActionIcon, Box, Center, Modal, Skeleton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconArrowsExchange } from "@tabler/icons-react";
 import { Dispatch, SetStateAction, useState } from "react";
+import { getEmojiImageUrl } from "./actions";
 
 const PREVIEW_SIZE = 150;
 
@@ -35,14 +36,10 @@ export const EmojiPicker = ({ emoji, setEmoji }: Props) => {
     setIsLoading(true);
     setEmoji({ native: "", url: "" });
     try {
-      const res = await fetch("/api/emoji", {
-        method: "POST",
-        body: JSON.stringify({ emoji: emojiData.native }),
-      });
-      const data = (await res.json()) as { imageUrl: string };
+      const imageUrl = await getEmojiImageUrl(emojiData.native);
       setEmoji({
         native: emojiData.native,
-        url: data.imageUrl,
+        url: imageUrl,
       });
     } catch (err) {
       console.error(err);

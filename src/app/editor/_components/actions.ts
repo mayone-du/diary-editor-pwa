@@ -1,5 +1,6 @@
 "use server";
 
+import { getEmojiImage } from "@/lib/emoji/get-emoji-image";
 import { octokit } from "@/lib/github/client";
 import { GITHUB } from "@/lib/github/constant";
 import dayjs from "dayjs";
@@ -65,4 +66,8 @@ ${args.body}
   } catch (err) {
     console.error(err);
   }
+};
+
+export const getEmojiImageUrl = async (emoji: string) => {
+  return await getEmojiImage(emoji);
 };
