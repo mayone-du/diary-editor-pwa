@@ -1,3 +1,4 @@
+// TODO: skin toneによって画像が表示されないのを修正する
 import data from "@emoji-mart/data";
 import { getEmojiDataFromNative, init } from "emoji-mart";
 // import { CONSTANTS } from "src/constant";
@@ -123,19 +124,10 @@ const isSkinTone = (str: string): str is keyof typeof EMOJI_SKIN_TONE_MAP => {
 };
 
 export const getEmojiImage = async (emoji: string) => {
-  // // const emoji = "🤜🏿";
-  // // const emoji = "🤜🏾";
-  // const emoji = "🤜🏼";
   const emojiData: EmojiData = await getEmojiDataFromNative(emoji);
-
-  // const emojiDataSourceRes = await fetch(EMOJI_DATASOURCE);
-  // const emojiDataSource = (await emojiDataSourceRes.json()) as EmojiDataSource;
-  // console.log(emojiData);
 
   // 文字列から::以降の文字があれば取得
   const skinTone = emojiData.shortcodes.split("::")[1]?.slice(0, -1); // 最後の:も削除
-
-  // if (!hit) return "";
   const emojiNameHyphenCase = emojiData.name
     .replaceAll("_", "-")
     .replaceAll(" ", "-")

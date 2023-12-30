@@ -27,6 +27,7 @@ import {
 import { useRef, useState } from "react";
 import { DiaryArgs, createDiary } from "./actions";
 import { EmojiPicker } from "./emoji-picker";
+import { notifications } from "@mantine/notifications";
 
 const TITLE_MAX_LENGTH = 100;
 const DESCRIPTION_MAX_LENGTH = 150;
@@ -77,7 +78,20 @@ export const MarkdownEditor = () => {
   const { title, description } = form.values;
 
   const handleSubmit = form.onSubmit(async (values) => {
-    await createDiary({ ...values, emoji: emoji.native });
+    const errMsg = await createDiary({ ...values, emoji: emoji.native });
+    if (errMsg) {
+      notifications.show({
+        title: "Error",
+        message: errMsg,
+        color: "red",
+      });
+      return;
+    }
+    notifications.show({
+      title: "Success",
+      message: "日記を作成しました",
+      color: "teal",
+    });
   });
 
   return (

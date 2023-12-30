@@ -65,6 +65,10 @@ ${args.body}
     });
   } catch (err) {
     console.error(err);
+    if (err instanceof Error) {
+      return err.message;
+    }
+    return "記事の保存中にエラーが発生しました";
   }
 };
 
